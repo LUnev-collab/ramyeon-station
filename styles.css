@@ -10,7 +10,6 @@
   --brown-soft:#856761;
   --line:rgba(228,90,51,.10);
   --shadow:0 18px 44px rgba(104,58,42,.10);
-  --radius:30px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -40,12 +39,12 @@ a{text-decoration:none; color:inherit}
 .nav a:hover{color:var(--orange)}
 .nav a:hover::after{width:100%}
 .menu-toggle{display:none; border:none; background:white; color:var(--orange); box-shadow:var(--shadow); width:46px; height:46px; border-radius:14px; font-size:1.35rem}
-.hero-grid{display:grid; grid-template-columns:1.04fr .96fr; align-items:center; gap:34px}
+.hero-grid{display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:34px}
 .hero-copy{background:linear-gradient(180deg,#f7e4de 0%, #f9ede8 100%); border-radius:36px; padding:34px; box-shadow:var(--shadow); border:1px solid rgba(228,90,51,.06)}
 .eyebrow,.section-kicker{display:inline-flex; padding:10px 18px; border-radius:999px; background:#efcac0; color:var(--orange-dark); font-weight:900; margin:0 0 18px}
-.hero h1,.section h2,.site-footer h3,.story-copy h3,.menu-copy h3,.highlight-copy h4{font-family:"Baloo 2", cursive; margin:0; line-height:.95}
-.hero h1{font-size:clamp(3.1rem, 8vw, 5.8rem); margin-bottom:16px; text-wrap:balance}
-.lead,.section-text,.menu-copy p,.highlight-copy p,.story-copy p,.site-footer p{color:var(--brown-soft); margin:0; text-align:justify; text-justify:inter-word; line-height:1.55}
+.hero h1,.section h2,.site-footer h3,.feature-copy h3,.menu-copy h3,.highlight-copy h4{font-family:"Baloo 2", cursive; margin:0; line-height:.95}
+.hero h1{font-size:clamp(2.7rem, 6vw, 4.8rem); margin-bottom:16px; max-width:8ch}
+.lead,.section-text,.menu-copy p,.highlight-copy p,.feature-copy p,.site-footer p{color:var(--brown-soft); margin:0; text-align:justify; text-justify:inter-word; line-height:1.55}
 .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin:26px 0 18px}
 .btn{min-height:54px; border-radius:18px; display:inline-flex; align-items:center; justify-content:center; padding:0 22px; font-weight:900; box-shadow:var(--shadow); transition:transform .18s ease, box-shadow .18s ease, background .18s ease}
 .btn:hover{transform:translateY(-2px)}
@@ -67,7 +66,7 @@ a{text-decoration:none; color:inherit}
 .section-head{margin-bottom:24px}
 .section h2{font-size:clamp(2.2rem, 5vw, 3.5rem)}
 .menu-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
-.menu-card,.highlight-card,.story-card,.info-card,.insta-wrap{background:white; box-shadow:var(--shadow); border-radius:30px; overflow:hidden}
+.menu-card,.highlight-card,.feature-card,.info-card,.insta-wrap,.photo-card{background:white; box-shadow:var(--shadow); border-radius:30px; overflow:hidden}
 .menu-card img{width:100%; height:auto}
 .menu-copy{padding:20px}
 .menu-copy h3{font-size:1.9rem; margin-bottom:10px}
@@ -76,16 +75,17 @@ a{text-decoration:none; color:inherit}
 .highlight-copy{padding:18px}
 .highlight-copy h4{font-size:1.7rem; margin-bottom:6px}
 .soft-section{background:linear-gradient(180deg,#fff7f3 0%, #fffdfa 100%)}
-.story-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:20px}
-.story-card img{width:100%; aspect-ratio:4/3; object-fit:cover}
-.story-copy{padding:18px}
-.story-copy h3{font-size:1.8rem; margin-bottom:8px}
-.gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:180px; gap:14px}
-.gallery-item{overflow:hidden; border-radius:24px; background:white; box-shadow:var(--shadow)}
-.gallery-item img{width:100%; height:100%; object-fit:cover; transition:transform .35s ease, filter .35s ease}
-.gallery-item:hover img{transform:scale(1.04); filter:saturate(1.04)}
-.gallery-item.wide{grid-column:span 2}
-.gallery-item.tall{grid-row:span 2}
+.feature-grid{display:grid; grid-template-columns:1.1fr 1fr 1fr; gap:18px; margin-bottom:22px}
+.feature-card img{width:100%; height:100%; object-fit:cover; aspect-ratio:4/3}
+.feature-tall img{aspect-ratio:4/5}
+.feature-copy{padding:18px}
+.feature-copy h3{font-size:1.7rem; margin-bottom:8px}
+.gallery-rows{display:grid; gap:16px}
+.gallery-row{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:16px}
+.gallery-row:last-child{grid-template-columns:repeat(4,1fr)}
+.photo-card img{width:100%; height:100%; min-height:220px; object-fit:cover; transition:transform .35s ease}
+.photo-card:hover img{transform:scale(1.03)}
+.photo-card.wide{grid-column:auto}
 .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
 .info-card{padding:28px}
 .info-card h2{font-size:clamp(2rem,4vw,3rem); margin-bottom:10px}
@@ -100,6 +100,24 @@ a{text-decoration:none; color:inherit}
 .site-footer h3{color:var(--orange); font-size:2rem; margin-bottom:4px}
 .footer-links{display:flex; flex-wrap:wrap; gap:16px 18px; justify-content:flex-end; font-weight:800; color:#7e655d}
 .footer-links a:hover{color:var(--orange)}
-@media (max-width:980px){.hero-grid,.menu-grid,.story-grid,.info-grid,.event-wrap,.footer-wrap{grid-template-columns:1fr}.combo-wrap{flex-direction:column; align-items:flex-start}}
-@media (max-width:760px){.menu-toggle{display:block}.nav{display:none; position:absolute; left:16px; right:16px; top:76px; background:rgba(255,255,255,.97); border-radius:24px; box-shadow:var(--shadow); padding:16px; flex-direction:column; gap:14px}.nav.open{display:flex}.hero-copy,.info-card,.insta-wrap{padding:24px}.hero-actions{flex-direction:column}.btn{width:100%}.gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:150px}.gallery-item.wide{grid-column:span 2}.menu-highlights,.story-grid{grid-template-columns:1fr}}
-@media (max-width:460px){.brand{font-size:1.6rem}.hero h1{font-size:3.1rem}.gallery-grid{grid-auto-rows:132px}}
+@media (max-width:980px){
+  .hero-grid,.menu-grid,.info-grid,.event-wrap,.footer-wrap,.feature-grid{grid-template-columns:1fr}
+  .combo-wrap{flex-direction:column; align-items:flex-start}
+  .gallery-row,.gallery-row:last-child{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .menu-toggle{display:block}
+  .nav{display:none; position:absolute; left:16px; right:16px; top:76px; background:rgba(255,255,255,.97); border-radius:24px; box-shadow:var(--shadow); padding:16px; flex-direction:column; gap:14px}
+  .nav.open{display:flex}
+  .hero-copy,.info-card,.insta-wrap{padding:24px}
+  .hero-actions{flex-direction:column}
+  .btn{width:100%}
+  .menu-highlights{grid-template-columns:1fr}
+  .gallery-row,.gallery-row:last-child{grid-template-columns:1fr}
+  .photo-card img{min-height:250px}
+  .hero h1{max-width:10ch}
+}
+@media (max-width:460px){
+  .brand{font-size:1.6rem}
+  .hero h1{font-size:3rem}
+}
